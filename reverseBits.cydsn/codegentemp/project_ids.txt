@@ -1,0 +1,9 @@
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\countBits.cydsn\countBits.cyprj|10e209ff-6bc9-4b39-a85d-7171a3def52c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9b0d1002-0757-4410-8c3f-68f186e7b39a
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|7cf407e3-07c7-4e15-88d1-732312b30560
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|19b33940-b4b1-4513-b15c-e06d5677a20d
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b5d2aa18-f880-489b-bdc1-dbae7bf0feea
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\isPowerOfTwo.cydsn\isPowerOfTwo.cyprj|9cacea50-d9b3-45d2-967a-051312a4be11
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\rearrangingBits.cydsn\rearrangingBits.cyprj|110a67de-d0b0-40c3-a2e4-90c2fb061e00
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\reverseBits.cydsn\reverseBits.cyprj|b1795039-363e-42b9-86f7-984e6151ba38
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\interleaveBits.cydsn\interleaveBits.cyprj|8490f0ca-a571-483c-aafc-8b0e7c693dae

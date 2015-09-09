@@ -1,0 +1,1101 @@
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.rearrangeBits,"ax",%progbits
+  18              		.align	2
+  19              		.global	rearrangeBits
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	rearrangeBits, %function
+  23              	rearrangeBits:
+  24              	.LFB33:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** #include <project.h>
+   2:.\main.c      **** #include <stdio.h>
+   3:.\main.c      **** #include <stdlib.h>
+   4:.\main.c      **** #define MAX_BUFFER_SIZE 64
+   5:.\main.c      **** 
+   6:.\main.c      **** int rearrangeBits(int8 v){
+  26              		.loc 1 6 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 30B5     		push	{r4, r5, lr}
+  30              		.cfi_def_cfa_offset 12
+  31              		.cfi_offset 4, -12
+  32              		.cfi_offset 5, -8
+  33              		.cfi_offset 14, -4
+  34              	.LVL1:
+   7:.\main.c      ****     int count = 0;
+  35              		.loc 1 7 0
+  36 0002 0023     		mov	r3, #0
+   8:.\main.c      ****     int i;
+   9:.\main.c      ****     
+  10:.\main.c      ****     // count # of 1s, shift to the right to iterate
+  11:.\main.c      ****     while (v){
+  12:.\main.c      ****         if ((v & 1) == 1){
+  37              		.loc 1 12 0
+  38 0004 0122     		mov	r2, #1
+  11:.\main.c      ****     while (v){
+  39              		.loc 1 11 0
+  40 0006 03E0     		b	.L2
+  41              	.LVL2:
+  42              	.L4:
+  43              		.loc 1 12 0
+  44 0008 0242     		tst	r2, r0
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 2
+
+
+  45 000a 00D0     		beq	.L3
+  13:.\main.c      ****           count++;  
+  46              		.loc 1 13 0
+  47 000c 0133     		add	r3, r3, #1
+  48              	.LVL3:
+  49              	.L3:
+  14:.\main.c      ****         }
+  15:.\main.c      ****         v = v>>1;
+  50              		.loc 1 15 0
+  51 000e 4010     		asr	r0, r0, #1
+  52              	.LVL4:
+  53              	.L2:
+  11:.\main.c      ****     while (v){
+  54              		.loc 1 11 0 discriminator 1
+  55 0010 0028     		cmp	r0, #0
+  56 0012 F9D1     		bne	.L4
+  57              	.LBB2:
+  16:.\main.c      ****     }
+  17:.\main.c      ****     
+  18:.\main.c      ****     uint8 num = v << 8;
+  19:.\main.c      ****     
+  20:.\main.c      ****     for(i = count; i >= 0; i--){
+  21:.\main.c      ****         uint mask = i;
+  22:.\main.c      ****         num = ((1 << (8-mask)) | num);  
+  58              		.loc 1 22 0
+  59 0014 0824     		mov	r4, #8
+  60 0016 0121     		mov	r1, #1
+  61 0018 05E0     		b	.L5
+  62              	.LVL5:
+  63              	.L6:
+  64              		.loc 1 22 0 is_stmt 0 discriminator 2
+  65 001a E21A     		sub	r2, r4, r3
+  66 001c 0D1C     		mov	r5, r1
+  67 001e 9540     		lsl	r5, r5, r2
+  68 0020 2843     		orr	r0, r5
+  69              	.LVL6:
+  70 0022 C0B2     		uxtb	r0, r0
+  71              	.LVL7:
+  72              	.LBE2:
+  20:.\main.c      ****     for(i = count; i >= 0; i--){
+  73              		.loc 1 20 0 is_stmt 1 discriminator 2
+  74 0024 013B     		sub	r3, r3, #1
+  75              	.LVL8:
+  76              	.L5:
+  20:.\main.c      ****     for(i = count; i >= 0; i--){
+  77              		.loc 1 20 0 is_stmt 0 discriminator 1
+  78 0026 002B     		cmp	r3, #0
+  79 0028 F7DA     		bge	.L6
+  23:.\main.c      ****     }
+  24:.\main.c      ****         
+  25:.\main.c      ****     return num;                
+  26:.\main.c      **** }
+  80              		.loc 1 26 0 is_stmt 1
+  81              		@ sp needed
+  82 002a 30BD     		pop	{r4, r5, pc}
+  83              		.cfi_endproc
+  84              	.LFE33:
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 3
+
+
+  85              		.size	rearrangeBits, .-rearrangeBits
+  86              		.section	.text.main,"ax",%progbits
+  87              		.align	2
+  88              		.global	main
+  89              		.code	16
+  90              		.thumb_func
+  91              		.type	main, %function
+  92              	main:
+  93              	.LFB34:
+  27:.\main.c      **** int main(){
+  94              		.loc 1 27 0
+  95              		.cfi_startproc
+  96 0000 70B5     		push	{r4, r5, r6, lr}
+  97              		.cfi_def_cfa_offset 16
+  98              		.cfi_offset 4, -16
+  99              		.cfi_offset 5, -12
+ 100              		.cfi_offset 6, -8
+ 101              		.cfi_offset 14, -4
+ 102 0002 90B0     		sub	sp, sp, #64
+ 103              		.cfi_def_cfa_offset 80
+  28:.\main.c      ****     char buffer[MAX_BUFFER_SIZE];
+  29:.\main.c      ****     CyGlobalIntEnable;      /* Enable global interrupts */
+ 104              		.loc 1 29 0
+ 105              	@ 29 ".\main.c" 1
+ 106 0004 62B6     		CPSIE   i
+ 107              	@ 0 "" 2
+  30:.\main.c      ****     
+  31:.\main.c      ****     UART_1_Start();
+ 108              		.loc 1 31 0
+ 109              		.code	16
+ 110 0006 FFF7FEFF 		bl	UART_1_Start
+ 111              	.LVL9:
+  32:.\main.c      ****     
+  33:.\main.c      ****     strcpy(buffer, "Established Communication \n \r");   // Copy String Contents into buffer
+ 112              		.loc 1 33 0
+ 113 000a 0D49     		ldr	r1, .L9
+ 114 000c 6B46     		mov	r3, sp
+ 115 000e 0A1C     		mov	r2, r1
+ 116 0010 61CA     		ldmia	r2!, {r0, r5, r6}
+ 117 0012 61C3     		stmia	r3!, {r0, r5, r6}
+ 118 0014 23CA     		ldmia	r2!, {r0, r1, r5}
+ 119 0016 23C3     		stmia	r3!, {r0, r1, r5}
+ 120 0018 1668     		ldr	r6, [r2]
+ 121 001a 1E60     		str	r6, [r3]
+ 122 001c 9288     		ldrh	r2, [r2, #4]
+ 123 001e 9A80     		strh	r2, [r3, #4]
+  34:.\main.c      ****     UART_1_UartPutString(buffer);
+ 124              		.loc 1 34 0
+ 125 0020 6846     		mov	r0, sp
+ 126 0022 FFF7FEFF 		bl	UART_1_UartPutString
+ 127              	.LVL10:
+  35:.\main.c      ****     
+  36:.\main.c      ****     int v = 0x56;
+  37:.\main.c      ****     int flag = rearrangeBits(v);
+ 128              		.loc 1 37 0
+ 129 0026 5620     		mov	r0, #86
+ 130 0028 FFF7FEFF 		bl	rearrangeBits
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 4
+
+
+ 131              	.LVL11:
+ 132 002c 021C     		mov	r2, r0
+ 133              	.LVL12:
+  38:.\main.c      ****     sprintf(buffer, "%04x", flag); /* Write the count value as a string. */
+ 134              		.loc 1 38 0
+ 135 002e 6846     		mov	r0, sp
+ 136              	.LVL13:
+ 137 0030 0449     		ldr	r1, .L9+4
+ 138 0032 FFF7FEFF 		bl	sprintf
+ 139              	.LVL14:
+  39:.\main.c      ****     UART_1_UartPutString(buffer); /* Concatenate the new line and carriage return characters.*/
+ 140              		.loc 1 39 0
+ 141 0036 6846     		mov	r0, sp
+ 142 0038 FFF7FEFF 		bl	UART_1_UartPutString
+ 143              	.LVL15:
+ 144              	.L8:
+ 145 003c FEE7     		b	.L8
+ 146              	.L10:
+ 147 003e C046     		.align	2
+ 148              	.L9:
+ 149 0040 00000000 		.word	.LC0
+ 150 0044 20000000 		.word	.LC2
+ 151              		.cfi_endproc
+ 152              	.LFE34:
+ 153              		.size	main, .-main
+ 154              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 155              		.align	2
+ 156              	.LC0:
+ 157 0000 45737461 		.ascii	"Established Communication \012 \015\000"
+ 157      626C6973 
+ 157      68656420 
+ 157      436F6D6D 
+ 157      756E6963 
+ 158 001e 0000     		.space	2
+ 159              	.LC2:
+ 160 0020 25303478 		.ascii	"%04x\000"
+ 160      00
+ 161 0025 000000   		.text
+ 162              	.Letext0:
+ 163              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 164              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 165              		.file 4 "Generated_Source\\PSoC4/UART_1_SPI_UART.h"
+ 166              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 167              		.file 6 "Generated_Source\\PSoC4/UART_1.h"
+ 168              		.section	.debug_info,"",%progbits
+ 169              	.Ldebug_info0:
+ 170 0000 15020000 		.4byte	0x215
+ 171 0004 0400     		.2byte	0x4
+ 172 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 173 000a 04       		.byte	0x4
+ 174 000b 01       		.uleb128 0x1
+ 175 000c C2000000 		.4byte	.LASF23
+ 176 0010 01       		.byte	0x1
+ 177 0011 7A000000 		.4byte	.LASF24
+ 178 0015 7A010000 		.4byte	.LASF25
+ 179 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 180 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 5
+
+
+ 181 0021 00000000 		.4byte	.Ldebug_line0
+ 182 0025 02       		.uleb128 0x2
+ 183 0026 01       		.byte	0x1
+ 184 0027 06       		.byte	0x6
+ 185 0028 CC010000 		.4byte	.LASF0
+ 186 002c 02       		.uleb128 0x2
+ 187 002d 01       		.byte	0x1
+ 188 002e 08       		.byte	0x8
+ 189 002f 41000000 		.4byte	.LASF1
+ 190 0033 02       		.uleb128 0x2
+ 191 0034 02       		.byte	0x2
+ 192 0035 05       		.byte	0x5
+ 193 0036 5A010000 		.4byte	.LASF2
+ 194 003a 02       		.uleb128 0x2
+ 195 003b 02       		.byte	0x2
+ 196 003c 07       		.byte	0x7
+ 197 003d 67000000 		.4byte	.LASF3
+ 198 0041 02       		.uleb128 0x2
+ 199 0042 04       		.byte	0x4
+ 200 0043 05       		.byte	0x5
+ 201 0044 71010000 		.4byte	.LASF4
+ 202 0048 02       		.uleb128 0x2
+ 203 0049 04       		.byte	0x4
+ 204 004a 07       		.byte	0x7
+ 205 004b 55000000 		.4byte	.LASF5
+ 206 004f 02       		.uleb128 0x2
+ 207 0050 08       		.byte	0x8
+ 208 0051 05       		.byte	0x5
+ 209 0052 47010000 		.4byte	.LASF6
+ 210 0056 02       		.uleb128 0x2
+ 211 0057 08       		.byte	0x8
+ 212 0058 07       		.byte	0x7
+ 213 0059 AB000000 		.4byte	.LASF7
+ 214 005d 03       		.uleb128 0x3
+ 215 005e 04       		.byte	0x4
+ 216 005f 05       		.byte	0x5
+ 217 0060 696E7400 		.ascii	"int\000"
+ 218 0064 02       		.uleb128 0x2
+ 219 0065 04       		.byte	0x4
+ 220 0066 07       		.byte	0x7
+ 221 0067 9E000000 		.4byte	.LASF8
+ 222 006b 04       		.uleb128 0x4
+ 223 006c 6B010000 		.4byte	.LASF9
+ 224 0070 02       		.byte	0x2
+ 225 0071 B3       		.byte	0xb3
+ 226 0072 2C000000 		.4byte	0x2c
+ 227 0076 04       		.uleb128 0x4
+ 228 0077 94000000 		.4byte	.LASF10
+ 229 007b 02       		.byte	0x2
+ 230 007c B6       		.byte	0xb6
+ 231 007d 25000000 		.4byte	0x25
+ 232 0081 02       		.uleb128 0x2
+ 233 0082 04       		.byte	0x4
+ 234 0083 04       		.byte	0x4
+ 235 0084 3B000000 		.4byte	.LASF11
+ 236 0088 02       		.uleb128 0x2
+ 237 0089 08       		.byte	0x8
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 6
+
+
+ 238 008a 04       		.byte	0x4
+ 239 008b 83000000 		.4byte	.LASF12
+ 240 008f 04       		.uleb128 0x4
+ 241 0090 4F000000 		.4byte	.LASF13
+ 242 0094 02       		.byte	0x2
+ 243 0095 C4       		.byte	0xc4
+ 244 0096 9A000000 		.4byte	0x9a
+ 245 009a 02       		.uleb128 0x2
+ 246 009b 01       		.byte	0x1
+ 247 009c 08       		.byte	0x8
+ 248 009d 55010000 		.4byte	.LASF14
+ 249 00a1 02       		.uleb128 0x2
+ 250 00a2 04       		.byte	0x4
+ 251 00a3 07       		.byte	0x7
+ 252 00a4 3E010000 		.4byte	.LASF15
+ 253 00a8 05       		.uleb128 0x5
+ 254 00a9 04       		.byte	0x4
+ 255 00aa 9A000000 		.4byte	0x9a
+ 256 00ae 05       		.uleb128 0x5
+ 257 00af 04       		.byte	0x4
+ 258 00b0 B4000000 		.4byte	0xb4
+ 259 00b4 06       		.uleb128 0x6
+ 260 00b5 9A000000 		.4byte	0x9a
+ 261 00b9 04       		.uleb128 0x4
+ 262 00ba 0D000000 		.4byte	.LASF16
+ 263 00be 03       		.byte	0x3
+ 264 00bf 70       		.byte	0x70
+ 265 00c0 64000000 		.4byte	0x64
+ 266 00c4 07       		.uleb128 0x7
+ 267 00c5 12000000 		.4byte	.LASF26
+ 268 00c9 01       		.byte	0x1
+ 269 00ca 06       		.byte	0x6
+ 270 00cb 5D000000 		.4byte	0x5d
+ 271 00cf 00000000 		.4byte	.LFB33
+ 272 00d3 2C000000 		.4byte	.LFE33-.LFB33
+ 273 00d7 01       		.uleb128 0x1
+ 274 00d8 9C       		.byte	0x9c
+ 275 00d9 2D010000 		.4byte	0x12d
+ 276 00dd 08       		.uleb128 0x8
+ 277 00de 7600     		.ascii	"v\000"
+ 278 00e0 01       		.byte	0x1
+ 279 00e1 06       		.byte	0x6
+ 280 00e2 76000000 		.4byte	0x76
+ 281 00e6 00000000 		.4byte	.LLST0
+ 282 00ea 09       		.uleb128 0x9
+ 283 00eb 20000000 		.4byte	.LASF17
+ 284 00ef 01       		.byte	0x1
+ 285 00f0 07       		.byte	0x7
+ 286 00f1 5D000000 		.4byte	0x5d
+ 287 00f5 1E000000 		.4byte	.LLST1
+ 288 00f9 0A       		.uleb128 0xa
+ 289 00fa 6900     		.ascii	"i\000"
+ 290 00fc 01       		.byte	0x1
+ 291 00fd 08       		.byte	0x8
+ 292 00fe 5D000000 		.4byte	0x5d
+ 293 0102 01       		.uleb128 0x1
+ 294 0103 53       		.byte	0x53
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 7
+
+
+ 295 0104 0B       		.uleb128 0xb
+ 296 0105 6E756D00 		.ascii	"num\000"
+ 297 0109 01       		.byte	0x1
+ 298 010a 12       		.byte	0x12
+ 299 010b 6B000000 		.4byte	0x6b
+ 300 010f 3D000000 		.4byte	.LLST2
+ 301 0113 0C       		.uleb128 0xc
+ 302 0114 14000000 		.4byte	.LBB2
+ 303 0118 10000000 		.4byte	.LBE2-.LBB2
+ 304 011c 09       		.uleb128 0x9
+ 305 011d 8F000000 		.4byte	.LASF18
+ 306 0121 01       		.byte	0x1
+ 307 0122 15       		.byte	0x15
+ 308 0123 B9000000 		.4byte	0xb9
+ 309 0127 5B000000 		.4byte	.LLST3
+ 310 012b 00       		.byte	0
+ 311 012c 00       		.byte	0
+ 312 012d 0D       		.uleb128 0xd
+ 313 012e 8A000000 		.4byte	.LASF27
+ 314 0132 01       		.byte	0x1
+ 315 0133 1B       		.byte	0x1b
+ 316 0134 5D000000 		.4byte	0x5d
+ 317 0138 00000000 		.4byte	.LFB34
+ 318 013c 48000000 		.4byte	.LFE34-.LFB34
+ 319 0140 01       		.uleb128 0x1
+ 320 0141 9C       		.byte	0x9c
+ 321 0142 CD010000 		.4byte	0x1cd
+ 322 0146 0E       		.uleb128 0xe
+ 323 0147 64010000 		.4byte	.LASF19
+ 324 014b 01       		.byte	0x1
+ 325 014c 1C       		.byte	0x1c
+ 326 014d CD010000 		.4byte	0x1cd
+ 327 0151 03       		.uleb128 0x3
+ 328 0152 91       		.byte	0x91
+ 329 0153 B07F     		.sleb128 -80
+ 330 0155 0F       		.uleb128 0xf
+ 331 0156 7600     		.ascii	"v\000"
+ 332 0158 01       		.byte	0x1
+ 333 0159 24       		.byte	0x24
+ 334 015a 5D000000 		.4byte	0x5d
+ 335 015e 56       		.byte	0x56
+ 336 015f 09       		.uleb128 0x9
+ 337 0160 99000000 		.4byte	.LASF20
+ 338 0164 01       		.byte	0x1
+ 339 0165 25       		.byte	0x25
+ 340 0166 5D000000 		.4byte	0x5d
+ 341 016a 6E000000 		.4byte	.LLST4
+ 342 016e 10       		.uleb128 0x10
+ 343 016f 0A000000 		.4byte	.LVL9
+ 344 0173 DD010000 		.4byte	0x1dd
+ 345 0177 11       		.uleb128 0x11
+ 346 0178 26000000 		.4byte	.LVL10
+ 347 017c E4010000 		.4byte	0x1e4
+ 348 0180 8B010000 		.4byte	0x18b
+ 349 0184 12       		.uleb128 0x12
+ 350 0185 01       		.uleb128 0x1
+ 351 0186 50       		.byte	0x50
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 8
+
+
+ 352 0187 02       		.uleb128 0x2
+ 353 0188 7D       		.byte	0x7d
+ 354 0189 00       		.sleb128 0
+ 355 018a 00       		.byte	0
+ 356 018b 11       		.uleb128 0x11
+ 357 018c 2C000000 		.4byte	.LVL11
+ 358 0190 C4000000 		.4byte	0xc4
+ 359 0194 9F010000 		.4byte	0x19f
+ 360 0198 12       		.uleb128 0x12
+ 361 0199 01       		.uleb128 0x1
+ 362 019a 50       		.byte	0x50
+ 363 019b 02       		.uleb128 0x2
+ 364 019c 08       		.byte	0x8
+ 365 019d 56       		.byte	0x56
+ 366 019e 00       		.byte	0
+ 367 019f 11       		.uleb128 0x11
+ 368 01a0 36000000 		.4byte	.LVL14
+ 369 01a4 01020000 		.4byte	0x201
+ 370 01a8 BC010000 		.4byte	0x1bc
+ 371 01ac 12       		.uleb128 0x12
+ 372 01ad 01       		.uleb128 0x1
+ 373 01ae 51       		.byte	0x51
+ 374 01af 05       		.uleb128 0x5
+ 375 01b0 03       		.byte	0x3
+ 376 01b1 20000000 		.4byte	.LC2
+ 377 01b5 12       		.uleb128 0x12
+ 378 01b6 01       		.uleb128 0x1
+ 379 01b7 50       		.byte	0x50
+ 380 01b8 02       		.uleb128 0x2
+ 381 01b9 7D       		.byte	0x7d
+ 382 01ba 00       		.sleb128 0
+ 383 01bb 00       		.byte	0
+ 384 01bc 13       		.uleb128 0x13
+ 385 01bd 3C000000 		.4byte	.LVL15
+ 386 01c1 E4010000 		.4byte	0x1e4
+ 387 01c5 12       		.uleb128 0x12
+ 388 01c6 01       		.uleb128 0x1
+ 389 01c7 50       		.byte	0x50
+ 390 01c8 02       		.uleb128 0x2
+ 391 01c9 7D       		.byte	0x7d
+ 392 01ca 00       		.sleb128 0
+ 393 01cb 00       		.byte	0
+ 394 01cc 00       		.byte	0
+ 395 01cd 14       		.uleb128 0x14
+ 396 01ce 9A000000 		.4byte	0x9a
+ 397 01d2 DD010000 		.4byte	0x1dd
+ 398 01d6 15       		.uleb128 0x15
+ 399 01d7 A1000000 		.4byte	0xa1
+ 400 01db 3F       		.byte	0x3f
+ 401 01dc 00       		.byte	0
+ 402 01dd 16       		.uleb128 0x16
+ 403 01de 00000000 		.4byte	.LASF28
+ 404 01e2 06       		.byte	0x6
+ 405 01e3 68       		.byte	0x68
+ 406 01e4 17       		.uleb128 0x17
+ 407 01e5 26000000 		.4byte	.LASF21
+ 408 01e9 04       		.byte	0x4
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 9
+
+
+ 409 01ea 7701     		.2byte	0x177
+ 410 01ec F6010000 		.4byte	0x1f6
+ 411 01f0 18       		.uleb128 0x18
+ 412 01f1 F6010000 		.4byte	0x1f6
+ 413 01f5 00       		.byte	0
+ 414 01f6 05       		.uleb128 0x5
+ 415 01f7 04       		.byte	0x4
+ 416 01f8 FC010000 		.4byte	0x1fc
+ 417 01fc 06       		.uleb128 0x6
+ 418 01fd 8F000000 		.4byte	0x8f
+ 419 0201 19       		.uleb128 0x19
+ 420 0202 D8010000 		.4byte	.LASF22
+ 421 0206 05       		.byte	0x5
+ 422 0207 D9       		.byte	0xd9
+ 423 0208 5D000000 		.4byte	0x5d
+ 424 020c 18       		.uleb128 0x18
+ 425 020d A8000000 		.4byte	0xa8
+ 426 0211 18       		.uleb128 0x18
+ 427 0212 AE000000 		.4byte	0xae
+ 428 0216 1A       		.uleb128 0x1a
+ 429 0217 00       		.byte	0
+ 430 0218 00       		.byte	0
+ 431              		.section	.debug_abbrev,"",%progbits
+ 432              	.Ldebug_abbrev0:
+ 433 0000 01       		.uleb128 0x1
+ 434 0001 11       		.uleb128 0x11
+ 435 0002 01       		.byte	0x1
+ 436 0003 25       		.uleb128 0x25
+ 437 0004 0E       		.uleb128 0xe
+ 438 0005 13       		.uleb128 0x13
+ 439 0006 0B       		.uleb128 0xb
+ 440 0007 03       		.uleb128 0x3
+ 441 0008 0E       		.uleb128 0xe
+ 442 0009 1B       		.uleb128 0x1b
+ 443 000a 0E       		.uleb128 0xe
+ 444 000b 55       		.uleb128 0x55
+ 445 000c 17       		.uleb128 0x17
+ 446 000d 11       		.uleb128 0x11
+ 447 000e 01       		.uleb128 0x1
+ 448 000f 10       		.uleb128 0x10
+ 449 0010 17       		.uleb128 0x17
+ 450 0011 00       		.byte	0
+ 451 0012 00       		.byte	0
+ 452 0013 02       		.uleb128 0x2
+ 453 0014 24       		.uleb128 0x24
+ 454 0015 00       		.byte	0
+ 455 0016 0B       		.uleb128 0xb
+ 456 0017 0B       		.uleb128 0xb
+ 457 0018 3E       		.uleb128 0x3e
+ 458 0019 0B       		.uleb128 0xb
+ 459 001a 03       		.uleb128 0x3
+ 460 001b 0E       		.uleb128 0xe
+ 461 001c 00       		.byte	0
+ 462 001d 00       		.byte	0
+ 463 001e 03       		.uleb128 0x3
+ 464 001f 24       		.uleb128 0x24
+ 465 0020 00       		.byte	0
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 10
+
+
+ 466 0021 0B       		.uleb128 0xb
+ 467 0022 0B       		.uleb128 0xb
+ 468 0023 3E       		.uleb128 0x3e
+ 469 0024 0B       		.uleb128 0xb
+ 470 0025 03       		.uleb128 0x3
+ 471 0026 08       		.uleb128 0x8
+ 472 0027 00       		.byte	0
+ 473 0028 00       		.byte	0
+ 474 0029 04       		.uleb128 0x4
+ 475 002a 16       		.uleb128 0x16
+ 476 002b 00       		.byte	0
+ 477 002c 03       		.uleb128 0x3
+ 478 002d 0E       		.uleb128 0xe
+ 479 002e 3A       		.uleb128 0x3a
+ 480 002f 0B       		.uleb128 0xb
+ 481 0030 3B       		.uleb128 0x3b
+ 482 0031 0B       		.uleb128 0xb
+ 483 0032 49       		.uleb128 0x49
+ 484 0033 13       		.uleb128 0x13
+ 485 0034 00       		.byte	0
+ 486 0035 00       		.byte	0
+ 487 0036 05       		.uleb128 0x5
+ 488 0037 0F       		.uleb128 0xf
+ 489 0038 00       		.byte	0
+ 490 0039 0B       		.uleb128 0xb
+ 491 003a 0B       		.uleb128 0xb
+ 492 003b 49       		.uleb128 0x49
+ 493 003c 13       		.uleb128 0x13
+ 494 003d 00       		.byte	0
+ 495 003e 00       		.byte	0
+ 496 003f 06       		.uleb128 0x6
+ 497 0040 26       		.uleb128 0x26
+ 498 0041 00       		.byte	0
+ 499 0042 49       		.uleb128 0x49
+ 500 0043 13       		.uleb128 0x13
+ 501 0044 00       		.byte	0
+ 502 0045 00       		.byte	0
+ 503 0046 07       		.uleb128 0x7
+ 504 0047 2E       		.uleb128 0x2e
+ 505 0048 01       		.byte	0x1
+ 506 0049 3F       		.uleb128 0x3f
+ 507 004a 19       		.uleb128 0x19
+ 508 004b 03       		.uleb128 0x3
+ 509 004c 0E       		.uleb128 0xe
+ 510 004d 3A       		.uleb128 0x3a
+ 511 004e 0B       		.uleb128 0xb
+ 512 004f 3B       		.uleb128 0x3b
+ 513 0050 0B       		.uleb128 0xb
+ 514 0051 27       		.uleb128 0x27
+ 515 0052 19       		.uleb128 0x19
+ 516 0053 49       		.uleb128 0x49
+ 517 0054 13       		.uleb128 0x13
+ 518 0055 11       		.uleb128 0x11
+ 519 0056 01       		.uleb128 0x1
+ 520 0057 12       		.uleb128 0x12
+ 521 0058 06       		.uleb128 0x6
+ 522 0059 40       		.uleb128 0x40
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 11
+
+
+ 523 005a 18       		.uleb128 0x18
+ 524 005b 9742     		.uleb128 0x2117
+ 525 005d 19       		.uleb128 0x19
+ 526 005e 01       		.uleb128 0x1
+ 527 005f 13       		.uleb128 0x13
+ 528 0060 00       		.byte	0
+ 529 0061 00       		.byte	0
+ 530 0062 08       		.uleb128 0x8
+ 531 0063 05       		.uleb128 0x5
+ 532 0064 00       		.byte	0
+ 533 0065 03       		.uleb128 0x3
+ 534 0066 08       		.uleb128 0x8
+ 535 0067 3A       		.uleb128 0x3a
+ 536 0068 0B       		.uleb128 0xb
+ 537 0069 3B       		.uleb128 0x3b
+ 538 006a 0B       		.uleb128 0xb
+ 539 006b 49       		.uleb128 0x49
+ 540 006c 13       		.uleb128 0x13
+ 541 006d 02       		.uleb128 0x2
+ 542 006e 17       		.uleb128 0x17
+ 543 006f 00       		.byte	0
+ 544 0070 00       		.byte	0
+ 545 0071 09       		.uleb128 0x9
+ 546 0072 34       		.uleb128 0x34
+ 547 0073 00       		.byte	0
+ 548 0074 03       		.uleb128 0x3
+ 549 0075 0E       		.uleb128 0xe
+ 550 0076 3A       		.uleb128 0x3a
+ 551 0077 0B       		.uleb128 0xb
+ 552 0078 3B       		.uleb128 0x3b
+ 553 0079 0B       		.uleb128 0xb
+ 554 007a 49       		.uleb128 0x49
+ 555 007b 13       		.uleb128 0x13
+ 556 007c 02       		.uleb128 0x2
+ 557 007d 17       		.uleb128 0x17
+ 558 007e 00       		.byte	0
+ 559 007f 00       		.byte	0
+ 560 0080 0A       		.uleb128 0xa
+ 561 0081 34       		.uleb128 0x34
+ 562 0082 00       		.byte	0
+ 563 0083 03       		.uleb128 0x3
+ 564 0084 08       		.uleb128 0x8
+ 565 0085 3A       		.uleb128 0x3a
+ 566 0086 0B       		.uleb128 0xb
+ 567 0087 3B       		.uleb128 0x3b
+ 568 0088 0B       		.uleb128 0xb
+ 569 0089 49       		.uleb128 0x49
+ 570 008a 13       		.uleb128 0x13
+ 571 008b 02       		.uleb128 0x2
+ 572 008c 18       		.uleb128 0x18
+ 573 008d 00       		.byte	0
+ 574 008e 00       		.byte	0
+ 575 008f 0B       		.uleb128 0xb
+ 576 0090 34       		.uleb128 0x34
+ 577 0091 00       		.byte	0
+ 578 0092 03       		.uleb128 0x3
+ 579 0093 08       		.uleb128 0x8
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 12
+
+
+ 580 0094 3A       		.uleb128 0x3a
+ 581 0095 0B       		.uleb128 0xb
+ 582 0096 3B       		.uleb128 0x3b
+ 583 0097 0B       		.uleb128 0xb
+ 584 0098 49       		.uleb128 0x49
+ 585 0099 13       		.uleb128 0x13
+ 586 009a 02       		.uleb128 0x2
+ 587 009b 17       		.uleb128 0x17
+ 588 009c 00       		.byte	0
+ 589 009d 00       		.byte	0
+ 590 009e 0C       		.uleb128 0xc
+ 591 009f 0B       		.uleb128 0xb
+ 592 00a0 01       		.byte	0x1
+ 593 00a1 11       		.uleb128 0x11
+ 594 00a2 01       		.uleb128 0x1
+ 595 00a3 12       		.uleb128 0x12
+ 596 00a4 06       		.uleb128 0x6
+ 597 00a5 00       		.byte	0
+ 598 00a6 00       		.byte	0
+ 599 00a7 0D       		.uleb128 0xd
+ 600 00a8 2E       		.uleb128 0x2e
+ 601 00a9 01       		.byte	0x1
+ 602 00aa 3F       		.uleb128 0x3f
+ 603 00ab 19       		.uleb128 0x19
+ 604 00ac 03       		.uleb128 0x3
+ 605 00ad 0E       		.uleb128 0xe
+ 606 00ae 3A       		.uleb128 0x3a
+ 607 00af 0B       		.uleb128 0xb
+ 608 00b0 3B       		.uleb128 0x3b
+ 609 00b1 0B       		.uleb128 0xb
+ 610 00b2 49       		.uleb128 0x49
+ 611 00b3 13       		.uleb128 0x13
+ 612 00b4 11       		.uleb128 0x11
+ 613 00b5 01       		.uleb128 0x1
+ 614 00b6 12       		.uleb128 0x12
+ 615 00b7 06       		.uleb128 0x6
+ 616 00b8 40       		.uleb128 0x40
+ 617 00b9 18       		.uleb128 0x18
+ 618 00ba 9742     		.uleb128 0x2117
+ 619 00bc 19       		.uleb128 0x19
+ 620 00bd 01       		.uleb128 0x1
+ 621 00be 13       		.uleb128 0x13
+ 622 00bf 00       		.byte	0
+ 623 00c0 00       		.byte	0
+ 624 00c1 0E       		.uleb128 0xe
+ 625 00c2 34       		.uleb128 0x34
+ 626 00c3 00       		.byte	0
+ 627 00c4 03       		.uleb128 0x3
+ 628 00c5 0E       		.uleb128 0xe
+ 629 00c6 3A       		.uleb128 0x3a
+ 630 00c7 0B       		.uleb128 0xb
+ 631 00c8 3B       		.uleb128 0x3b
+ 632 00c9 0B       		.uleb128 0xb
+ 633 00ca 49       		.uleb128 0x49
+ 634 00cb 13       		.uleb128 0x13
+ 635 00cc 02       		.uleb128 0x2
+ 636 00cd 18       		.uleb128 0x18
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 13
+
+
+ 637 00ce 00       		.byte	0
+ 638 00cf 00       		.byte	0
+ 639 00d0 0F       		.uleb128 0xf
+ 640 00d1 34       		.uleb128 0x34
+ 641 00d2 00       		.byte	0
+ 642 00d3 03       		.uleb128 0x3
+ 643 00d4 08       		.uleb128 0x8
+ 644 00d5 3A       		.uleb128 0x3a
+ 645 00d6 0B       		.uleb128 0xb
+ 646 00d7 3B       		.uleb128 0x3b
+ 647 00d8 0B       		.uleb128 0xb
+ 648 00d9 49       		.uleb128 0x49
+ 649 00da 13       		.uleb128 0x13
+ 650 00db 1C       		.uleb128 0x1c
+ 651 00dc 0B       		.uleb128 0xb
+ 652 00dd 00       		.byte	0
+ 653 00de 00       		.byte	0
+ 654 00df 10       		.uleb128 0x10
+ 655 00e0 898201   		.uleb128 0x4109
+ 656 00e3 00       		.byte	0
+ 657 00e4 11       		.uleb128 0x11
+ 658 00e5 01       		.uleb128 0x1
+ 659 00e6 31       		.uleb128 0x31
+ 660 00e7 13       		.uleb128 0x13
+ 661 00e8 00       		.byte	0
+ 662 00e9 00       		.byte	0
+ 663 00ea 11       		.uleb128 0x11
+ 664 00eb 898201   		.uleb128 0x4109
+ 665 00ee 01       		.byte	0x1
+ 666 00ef 11       		.uleb128 0x11
+ 667 00f0 01       		.uleb128 0x1
+ 668 00f1 31       		.uleb128 0x31
+ 669 00f2 13       		.uleb128 0x13
+ 670 00f3 01       		.uleb128 0x1
+ 671 00f4 13       		.uleb128 0x13
+ 672 00f5 00       		.byte	0
+ 673 00f6 00       		.byte	0
+ 674 00f7 12       		.uleb128 0x12
+ 675 00f8 8A8201   		.uleb128 0x410a
+ 676 00fb 00       		.byte	0
+ 677 00fc 02       		.uleb128 0x2
+ 678 00fd 18       		.uleb128 0x18
+ 679 00fe 9142     		.uleb128 0x2111
+ 680 0100 18       		.uleb128 0x18
+ 681 0101 00       		.byte	0
+ 682 0102 00       		.byte	0
+ 683 0103 13       		.uleb128 0x13
+ 684 0104 898201   		.uleb128 0x4109
+ 685 0107 01       		.byte	0x1
+ 686 0108 11       		.uleb128 0x11
+ 687 0109 01       		.uleb128 0x1
+ 688 010a 31       		.uleb128 0x31
+ 689 010b 13       		.uleb128 0x13
+ 690 010c 00       		.byte	0
+ 691 010d 00       		.byte	0
+ 692 010e 14       		.uleb128 0x14
+ 693 010f 01       		.uleb128 0x1
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 14
+
+
+ 694 0110 01       		.byte	0x1
+ 695 0111 49       		.uleb128 0x49
+ 696 0112 13       		.uleb128 0x13
+ 697 0113 01       		.uleb128 0x1
+ 698 0114 13       		.uleb128 0x13
+ 699 0115 00       		.byte	0
+ 700 0116 00       		.byte	0
+ 701 0117 15       		.uleb128 0x15
+ 702 0118 21       		.uleb128 0x21
+ 703 0119 00       		.byte	0
+ 704 011a 49       		.uleb128 0x49
+ 705 011b 13       		.uleb128 0x13
+ 706 011c 2F       		.uleb128 0x2f
+ 707 011d 0B       		.uleb128 0xb
+ 708 011e 00       		.byte	0
+ 709 011f 00       		.byte	0
+ 710 0120 16       		.uleb128 0x16
+ 711 0121 2E       		.uleb128 0x2e
+ 712 0122 00       		.byte	0
+ 713 0123 3F       		.uleb128 0x3f
+ 714 0124 19       		.uleb128 0x19
+ 715 0125 03       		.uleb128 0x3
+ 716 0126 0E       		.uleb128 0xe
+ 717 0127 3A       		.uleb128 0x3a
+ 718 0128 0B       		.uleb128 0xb
+ 719 0129 3B       		.uleb128 0x3b
+ 720 012a 0B       		.uleb128 0xb
+ 721 012b 27       		.uleb128 0x27
+ 722 012c 19       		.uleb128 0x19
+ 723 012d 3C       		.uleb128 0x3c
+ 724 012e 19       		.uleb128 0x19
+ 725 012f 00       		.byte	0
+ 726 0130 00       		.byte	0
+ 727 0131 17       		.uleb128 0x17
+ 728 0132 2E       		.uleb128 0x2e
+ 729 0133 01       		.byte	0x1
+ 730 0134 3F       		.uleb128 0x3f
+ 731 0135 19       		.uleb128 0x19
+ 732 0136 03       		.uleb128 0x3
+ 733 0137 0E       		.uleb128 0xe
+ 734 0138 3A       		.uleb128 0x3a
+ 735 0139 0B       		.uleb128 0xb
+ 736 013a 3B       		.uleb128 0x3b
+ 737 013b 05       		.uleb128 0x5
+ 738 013c 27       		.uleb128 0x27
+ 739 013d 19       		.uleb128 0x19
+ 740 013e 3C       		.uleb128 0x3c
+ 741 013f 19       		.uleb128 0x19
+ 742 0140 01       		.uleb128 0x1
+ 743 0141 13       		.uleb128 0x13
+ 744 0142 00       		.byte	0
+ 745 0143 00       		.byte	0
+ 746 0144 18       		.uleb128 0x18
+ 747 0145 05       		.uleb128 0x5
+ 748 0146 00       		.byte	0
+ 749 0147 49       		.uleb128 0x49
+ 750 0148 13       		.uleb128 0x13
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 15
+
+
+ 751 0149 00       		.byte	0
+ 752 014a 00       		.byte	0
+ 753 014b 19       		.uleb128 0x19
+ 754 014c 2E       		.uleb128 0x2e
+ 755 014d 01       		.byte	0x1
+ 756 014e 3F       		.uleb128 0x3f
+ 757 014f 19       		.uleb128 0x19
+ 758 0150 03       		.uleb128 0x3
+ 759 0151 0E       		.uleb128 0xe
+ 760 0152 3A       		.uleb128 0x3a
+ 761 0153 0B       		.uleb128 0xb
+ 762 0154 3B       		.uleb128 0x3b
+ 763 0155 0B       		.uleb128 0xb
+ 764 0156 27       		.uleb128 0x27
+ 765 0157 19       		.uleb128 0x19
+ 766 0158 49       		.uleb128 0x49
+ 767 0159 13       		.uleb128 0x13
+ 768 015a 3C       		.uleb128 0x3c
+ 769 015b 19       		.uleb128 0x19
+ 770 015c 00       		.byte	0
+ 771 015d 00       		.byte	0
+ 772 015e 1A       		.uleb128 0x1a
+ 773 015f 18       		.uleb128 0x18
+ 774 0160 00       		.byte	0
+ 775 0161 00       		.byte	0
+ 776 0162 00       		.byte	0
+ 777 0163 00       		.byte	0
+ 778              		.section	.debug_loc,"",%progbits
+ 779              	.Ldebug_loc0:
+ 780              	.LLST0:
+ 781 0000 00000000 		.4byte	.LVL0
+ 782 0004 10000000 		.4byte	.LVL4
+ 783 0008 0100     		.2byte	0x1
+ 784 000a 50       		.byte	0x50
+ 785 000b 10000000 		.4byte	.LVL4
+ 786 000f 1A000000 		.4byte	.LVL5
+ 787 0013 0100     		.2byte	0x1
+ 788 0015 50       		.byte	0x50
+ 789 0016 00000000 		.4byte	0
+ 790 001a 00000000 		.4byte	0
+ 791              	.LLST1:
+ 792 001e 02000000 		.4byte	.LVL1
+ 793 0022 08000000 		.4byte	.LVL2
+ 794 0026 0200     		.2byte	0x2
+ 795 0028 30       		.byte	0x30
+ 796 0029 9F       		.byte	0x9f
+ 797 002a 08000000 		.4byte	.LVL2
+ 798 002e 1A000000 		.4byte	.LVL5
+ 799 0032 0100     		.2byte	0x1
+ 800 0034 53       		.byte	0x53
+ 801 0035 00000000 		.4byte	0
+ 802 0039 00000000 		.4byte	0
+ 803              	.LLST2:
+ 804 003d 1A000000 		.4byte	.LVL5
+ 805 0041 22000000 		.4byte	.LVL6
+ 806 0045 0100     		.2byte	0x1
+ 807 0047 50       		.byte	0x50
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 16
+
+
+ 808 0048 24000000 		.4byte	.LVL7
+ 809 004c 2C000000 		.4byte	.LFE33
+ 810 0050 0100     		.2byte	0x1
+ 811 0052 50       		.byte	0x50
+ 812 0053 00000000 		.4byte	0
+ 813 0057 00000000 		.4byte	0
+ 814              	.LLST3:
+ 815 005b 1A000000 		.4byte	.LVL5
+ 816 005f 26000000 		.4byte	.LVL8
+ 817 0063 0100     		.2byte	0x1
+ 818 0065 53       		.byte	0x53
+ 819 0066 00000000 		.4byte	0
+ 820 006a 00000000 		.4byte	0
+ 821              	.LLST4:
+ 822 006e 2E000000 		.4byte	.LVL12
+ 823 0072 30000000 		.4byte	.LVL13
+ 824 0076 0100     		.2byte	0x1
+ 825 0078 50       		.byte	0x50
+ 826 0079 30000000 		.4byte	.LVL13
+ 827 007d 35000000 		.4byte	.LVL14-1
+ 828 0081 0100     		.2byte	0x1
+ 829 0083 52       		.byte	0x52
+ 830 0084 00000000 		.4byte	0
+ 831 0088 00000000 		.4byte	0
+ 832              		.section	.debug_aranges,"",%progbits
+ 833 0000 24000000 		.4byte	0x24
+ 834 0004 0200     		.2byte	0x2
+ 835 0006 00000000 		.4byte	.Ldebug_info0
+ 836 000a 04       		.byte	0x4
+ 837 000b 00       		.byte	0
+ 838 000c 0000     		.2byte	0
+ 839 000e 0000     		.2byte	0
+ 840 0010 00000000 		.4byte	.LFB33
+ 841 0014 2C000000 		.4byte	.LFE33-.LFB33
+ 842 0018 00000000 		.4byte	.LFB34
+ 843 001c 48000000 		.4byte	.LFE34-.LFB34
+ 844 0020 00000000 		.4byte	0
+ 845 0024 00000000 		.4byte	0
+ 846              		.section	.debug_ranges,"",%progbits
+ 847              	.Ldebug_ranges0:
+ 848 0000 00000000 		.4byte	.LFB33
+ 849 0004 2C000000 		.4byte	.LFE33
+ 850 0008 00000000 		.4byte	.LFB34
+ 851 000c 48000000 		.4byte	.LFE34
+ 852 0010 00000000 		.4byte	0
+ 853 0014 00000000 		.4byte	0
+ 854              		.section	.debug_line,"",%progbits
+ 855              	.Ldebug_line0:
+ 856 0000 99010000 		.section	.debug_str,"MS",%progbits,1
+ 856      02004E01 
+ 856      00000201 
+ 856      FB0E0D00 
+ 856      01010101 
+ 857              	.LASF28:
+ 858 0000 55415254 		.ascii	"UART_1_Start\000"
+ 858      5F315F53 
+ 858      74617274 
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 17
+
+
+ 858      00
+ 859              	.LASF16:
+ 860 000d 75696E74 		.ascii	"uint\000"
+ 860      00
+ 861              	.LASF26:
+ 862 0012 72656172 		.ascii	"rearrangeBits\000"
+ 862      72616E67 
+ 862      65426974 
+ 862      7300
+ 863              	.LASF17:
+ 864 0020 636F756E 		.ascii	"count\000"
+ 864      7400
+ 865              	.LASF21:
+ 866 0026 55415254 		.ascii	"UART_1_UartPutString\000"
+ 866      5F315F55 
+ 866      61727450 
+ 866      75745374 
+ 866      72696E67 
+ 867              	.LASF11:
+ 868 003b 666C6F61 		.ascii	"float\000"
+ 868      7400
+ 869              	.LASF1:
+ 870 0041 756E7369 		.ascii	"unsigned char\000"
+ 870      676E6564 
+ 870      20636861 
+ 870      7200
+ 871              	.LASF13:
+ 872 004f 63686172 		.ascii	"char8\000"
+ 872      3800
+ 873              	.LASF5:
+ 874 0055 6C6F6E67 		.ascii	"long unsigned int\000"
+ 874      20756E73 
+ 874      69676E65 
+ 874      6420696E 
+ 874      7400
+ 875              	.LASF3:
+ 876 0067 73686F72 		.ascii	"short unsigned int\000"
+ 876      7420756E 
+ 876      7369676E 
+ 876      65642069 
+ 876      6E7400
+ 877              	.LASF24:
+ 878 007a 2E5C6D61 		.ascii	".\\main.c\000"
+ 878      696E2E63 
+ 878      00
+ 879              	.LASF12:
+ 880 0083 646F7562 		.ascii	"double\000"
+ 880      6C6500
+ 881              	.LASF27:
+ 882 008a 6D61696E 		.ascii	"main\000"
+ 882      00
+ 883              	.LASF18:
+ 884 008f 6D61736B 		.ascii	"mask\000"
+ 884      00
+ 885              	.LASF10:
+ 886 0094 696E7438 		.ascii	"int8\000"
+ 886      00
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 18
+
+
+ 887              	.LASF20:
+ 888 0099 666C6167 		.ascii	"flag\000"
+ 888      00
+ 889              	.LASF8:
+ 890 009e 756E7369 		.ascii	"unsigned int\000"
+ 890      676E6564 
+ 890      20696E74 
+ 890      00
+ 891              	.LASF7:
+ 892 00ab 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 892      206C6F6E 
+ 892      6720756E 
+ 892      7369676E 
+ 892      65642069 
+ 893              	.LASF23:
+ 894 00c2 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 894      4320342E 
+ 894      382E3420 
+ 894      32303134 
+ 894      30353236 
+ 895 00f5 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 895      20726576 
+ 895      6973696F 
+ 895      6E203231 
+ 895      31333538 
+ 896 0128 67202D66 		.ascii	"g -ffunction-sections\000"
+ 896      66756E63 
+ 896      74696F6E 
+ 896      2D736563 
+ 896      74696F6E 
+ 897              	.LASF15:
+ 898 013e 73697A65 		.ascii	"sizetype\000"
+ 898      74797065 
+ 898      00
+ 899              	.LASF6:
+ 900 0147 6C6F6E67 		.ascii	"long long int\000"
+ 900      206C6F6E 
+ 900      6720696E 
+ 900      7400
+ 901              	.LASF14:
+ 902 0155 63686172 		.ascii	"char\000"
+ 902      00
+ 903              	.LASF2:
+ 904 015a 73686F72 		.ascii	"short int\000"
+ 904      7420696E 
+ 904      7400
+ 905              	.LASF19:
+ 906 0164 62756666 		.ascii	"buffer\000"
+ 906      657200
+ 907              	.LASF9:
+ 908 016b 75696E74 		.ascii	"uint8\000"
+ 908      3800
+ 909              	.LASF4:
+ 910 0171 6C6F6E67 		.ascii	"long int\000"
+ 910      20696E74 
+ 910      00
+ 911              	.LASF25:
+ARM GAS  C:\Users\Anand\AppData\Local\Temp\ccBEzMQq.s 			page 19
+
+
+ 912 017a 433A5C55 		.ascii	"C:\\Users\\Anand\\Desktop\\Summer_2015\\ECEC_304\\L"
+ 912      73657273 
+ 912      5C416E61 
+ 912      6E645C44 
+ 912      65736B74 
+ 913 01a7 61623261 		.ascii	"ab2a\\countBits\\rearrangingBits.cydsn\000"
+ 913      5C636F75 
+ 913      6E744269 
+ 913      74735C72 
+ 913      65617272 
+ 914              	.LASF0:
+ 915 01cc 7369676E 		.ascii	"signed char\000"
+ 915      65642063 
+ 915      68617200 
+ 916              	.LASF22:
+ 917 01d8 73707269 		.ascii	"sprintf\000"
+ 917      6E746600 
+ 918              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

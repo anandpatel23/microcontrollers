@@ -1,0 +1,6 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|89184204-a66f-472a-8797-a73f9d0bb7d0
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f5ea1603-00c7-42e2-9871-aeae7c194bb5
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|bec3daf0-1583-4993-84c5-26b63d8f22fb
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|2012542a-d328-4788-8566-a207d03c52b4
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\countBits.cydsn\countBits.cyprj|73b883c3-e0b0-49ac-9bcc-efe130e4df99
+C:\Users\Anand\Desktop\Summer_2015\ECEC_304\Lab2a\countBits\isPowerOfTwo.cydsn\isPowerOfTwo.cyprj|3148ca44-5aee-4789-9528-f1f2186a19f9
